@@ -44,7 +44,6 @@ Or just leverage the `Collector` to capture profiling data anywhere like this.
 ```golang
 // 1) Collect API
 collector := pprofsnaphost.NewCollector()
-// Collect will return profiling data in bytes
 b, err := collector.Collect(context.Background())
 if err != nil {
 	// handles error
@@ -59,7 +58,7 @@ f.Write(b)
 collector := pprofsnaphost.NewCollector()
 f, err := os.Create("profiles.tar.gz")
 if err != nil {
-// handles error
+	// handles error
 }
 collector.Write(context.Background(), f)
 ```
