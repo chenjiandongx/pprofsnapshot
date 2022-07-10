@@ -1,6 +1,6 @@
 # pprofsnapshot
 
-pprofsnapshot makes it easy to download the profiling data to local.
+pprofsnapshot makes it easy to download profiling data to local.
 
 ## Usages
 
@@ -39,7 +39,7 @@ x profiles/goroutine.pprof
 */
 ```
 
-Or use the `Collector` to captures profiling data anywhere like this.
+Or just leverage the `Collector` to capture profiling data anywhere like this.
 
 ```golang
 // 1) Collect API
