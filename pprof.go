@@ -140,10 +140,14 @@ func (c *Collector) compress(data map[string][]byte) ([]byte, error) {
 
 	for name, content := range data {
 		f, err := memFs.Create(name + ".pprof")
-		if _, err := f.Write(content); err != nil {
+		if err != nil {
 			return nil, err
 		}
 		defer f.Close()
+
+		if _, err := f.Write(content); err != nil {
+			return nil, err
+		}
 
 		stat, err := f.Stat()
 		if err != nil {
@@ -174,8 +178,8 @@ func (c *Collector) compress(data map[string][]byte) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-// HandleFor returns the std http.Handler for the profiles snapshots collected.
-func HandleFor(opts ...Option) http.Handler {
+// HandlerFor returns the http.Handler for the profiles snapshots collected.
+func HandlerFor(opts ...Option) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		collector := NewCollector(opts...)
 		query := r.URL.Query()
@@ -200,4 +204,9 @@ func HandleFor(opts ...Option) http.Handler {
 		}
 		_, _ = w.Write(b)
 	})
+}
+
+// HandleFuncFor returns the http.HandlerFunc for the profiles snapshots collected.
+func HandleFuncFor(opts ...Option) http.HandlerFunc {
+	return HandlerFor(opts...).ServeHTTP
 }
