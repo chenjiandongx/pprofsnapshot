@@ -12,7 +12,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/chenjiandongx/pprofsnaphost"
+	"github.com/chenjiandongx/pprofsnapshot"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	// * seconds
 	// * debug
 	// * profiles: goroutine/threadcreate/heap/allocs/block/mutex/cpu, split by comma
-	http.Handle("/debug/pprof/snapshot", pprofsnaphost.HandleFor())
+	http.Handle("/debug/pprof/snapshot", pprofsnapshot.HandleFor())
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -43,7 +43,7 @@ Or just leverage the `Collector` to capture profiling data anywhere like this.
 
 ```golang
 // 1) Collect API
-collector := pprofsnaphost.NewCollector()
+collector := pprofsnapshot.NewCollector()
 b, err := collector.Collect(context.Background())
 if err != nil {
 	// handles error
@@ -55,7 +55,7 @@ if err != nil {
 f.Write(b)
 
 // 2) Write API
-collector := pprofsnaphost.NewCollector()
+collector := pprofsnapshot.NewCollector()
 f, err := os.Create("profiles.tar.gz")
 if err != nil {
 	// handles error

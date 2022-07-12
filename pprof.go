@@ -1,4 +1,4 @@
-package pprofsnaphost
+package pprofsnapshot
 
 import (
 	"archive/tar"
