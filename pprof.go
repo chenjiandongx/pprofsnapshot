@@ -206,7 +206,7 @@ func HandlerFor(opts ...Option) http.Handler {
 	})
 }
 
-// HandleFuncFor returns the http.HandlerFunc for the profiles snapshots collected.
-func HandleFuncFor(opts ...Option) http.HandlerFunc {
+// HandlerFuncFor returns the http.HandlerFunc for the profiles snapshots collected.
+func HandlerFuncFor(opts ...Option) http.HandlerFunc {
 	return HandlerFor(opts...).ServeHTTP
 }

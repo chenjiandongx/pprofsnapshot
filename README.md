@@ -22,7 +22,7 @@ func main() {
 	// * profiles: goroutine/threadcreate/heap/allocs/block/mutex/cpu, split by comma
 	http.Handle("/debug/pprof/snapshot", pprofsnapshot.HandlerFor())
     // 
-	// http.HandleFunc("/debug/pprof/snapshot", pprofsnapshot.HandleFuncFor())
+	// http.HandleFunc("/debug/pprof/snapshot", pprofsnapshot.HandlerFuncFor())
 	http.ListenAndServe(":8080", nil)
 }
 
